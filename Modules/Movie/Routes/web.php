@@ -11,6 +11,14 @@
 |
 */
 
-Route::prefix('movie')->group(function() {
-    Route::get('/', 'MovieController@index');
+use Illuminate\Support\Facades\Route;
+use Modules\Movie\Http\Controllers\Admin\MovieController as AdminMovieController;
+use Modules\Movie\Http\Controllers\MovieController;
+
+Route::resource('movies', MovieController::class);
+
+Route::middleware(['isAdmin'])->group(function () {
+    Route::prefix('admin')->name('admin.')->group(function () {
+        Route::resource('movies', AdminMovieController::class)->except(['create', 'store', 'show']);
+    });
 });
