@@ -1,0 +1,7 @@
+{
+    "User": true,
+    "Movie": true,
+    "Review": false,
+    "Calendar": false,
+    "Permission": false
+}
