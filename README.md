@@ -48,34 +48,23 @@
   <ol>
     <li><strong>Clone the repository</strong>:</li>
     <code>git clone https://github.com/yourusername/TaskArr.git</code>
-
     <li><strong>Navigate to the project directory</strong>:</li>
     <code>cd TaskArr</code>
-
     <li><strong>Copy the example environment file and configure</strong>:</li>
     <code>cp .env.example .env</code>
-
     <p>Update the <code>.env</code> file with your database credentials and any other necessary configuration.</p>
-
     <li><strong>Build and start the Docker containers</strong>:</li>
     <code>docker-compose up -d --build</code>
-
     <p>This command will build the necessary Docker containers specified in <code>docker-compose.yml</code> and start them in detached mode.</p>
-
     <li><strong>Generate application key</strong>:</li>
     <code>docker-compose exec app php artisan key:generate</code>
-
     <li><strong>Run migrations</strong>:</li>
     <code>docker-compose exec app php artisan migrate</code>
-
     <li><strong>Run the application in Docker</strong>:</li>
     <code>docker-compose exec app php artisan serve --host=0.0.0.0</code>
-
     <p>This command starts the Laravel server inside the Docker container, allowing access at <code>http://localhost:8000</code> on your local machine.</p>
-
     <li><strong>Run npm run dev</strong>:</li>
     <code>docker-compose exec app npm run dev</code>
-
     <p>This command compiles the frontend assets using npm inside the Docker container.</p>
   </ol>
   
