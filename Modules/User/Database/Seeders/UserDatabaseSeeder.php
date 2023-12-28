@@ -26,9 +26,33 @@ class UserDatabaseSeeder extends Seeder
             [
                 'name' => 'Admin',
                 'email_verified_at' => now(),
-                'password' => Hash::make('aezakmi'),
+                'password' => Hash::make('605185'),
                 'remember_token' => Str::random(10),
                 'is_admin' => true
+            ]
+        );
+
+        User::updateOrCreate(
+            [
+                'email' => 'moderator@taskarr.com'
+            ],
+            [
+                'name' => 'Moderator',
+                'email_verified_at' => now(),
+                'password' => Hash::make('605185'),
+                'remember_token' => Str::random(10)
+            ]
+        );
+
+        User::updateOrCreate(
+            [
+                'email' => 'user@taskarr.com'
+            ],
+            [
+                'name' => 'User',
+                'email_verified_at' => now(),
+                'password' => Hash::make('605185'),
+                'remember_token' => Str::random(10)
             ]
         );
     }
