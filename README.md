@@ -5,18 +5,42 @@
 
   <h2>About TaskArr</h2>
   <p>TaskArr isn't just about managing tasks; it's an ecosystem aiding in optimizing time between work and relaxation. It offers features for tasks, movie and music recommendations, reviews, and a blog, fostering a balanced lifestyle.</p>
-
+  
   <h2>Modules</h2>
+  <h4>Core</h4>
   <ul>
-    <li>Core Module (categories)</li>
-    <li>Movie Module (movies, series, vods)</li>
-    <li>Permission Module - in process...</li>
-    <li>Review Module - in process...</li>
-    <li>Calendar Module - in process...</li>
-    <li>Calendar API - Google + Apple - in process...</li>
-    <li>User Module - in process...</li>
-    <li>Admin Module - in process...</li>
-    <!-- Add the remaining modules -->
+    <li>Authentication Module: Handles user authentication and access control.</li>
+    <li>Dashboard Module: Provides an overview and quick access to essential features.</li>
+    <li>QR Code Module: Enables the generation and scanning of QR codes.</li>
+    <li>PDF Module: Facilitates the creation and manipulation of PDF documents.</li>
+    <li>API Module: Offers an interface for integration with external systems through APIs.</li>
+    <li>WebSocket Module: Implements real-time communication via WebSocket technology.</li>
+    <li>Notification Module: Manages and dispatches notifications to users.</li>
+    <li>Settings Module: Controls and customizes application settings.</li>
+    <li>Payment Module: Facilitates payment processing within the application.</li>
+    <li>Jobs Module: Handles background job processing and scheduling.</li>
+  </ul>
+
+  <h4>Functional</h4>
+  <ul>
+    <li>Movie Module: Provides features related to movie recommendations, ratings, and comments.</li>
+    <li>Review Module: Enables users to rate and review various entities within the app.</li>
+    <li>Calendar Module: Manages scheduling and event organization.</li>
+    <li>Calendar API (Google + Apple): Integrates with Google and Apple calendars for seamless synchronization.</li>
+    <li>User Module: Manages user-related functionalities.</li>
+    <li>Admin Module: Provides administrative functionalities and controls.</li>
+  </ul>
+
+  <h4>Additional</h4>
+  <ul>
+    <li>Permission Module: Controls access and permissions for different user roles.</li>
+    <li>Shop Module: Facilitates online shopping functionalities.</li>
+    <li>Document Module: Manages document storage and handling.</li>
+    <li>Reports Module: Generates and presents reports based on application data.</li>
+    <li>Integration Module: Handles integrations with external services and APIs.</li>
+    <li>Blog Module: Offers a platform for blog creation and interaction.</li>
+    <li>Forum Module: Enables discussions and community engagement.</li>
+    <li>Chat Module: Implements real-time chat features.</li>
   </ul>
 
   <h2>Installation with Docker</h2>
