@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-use Modules\Core\Enums\PricingType;
 use Modules\Core\Enums\VisibilityStatus;
 
 return new class extends Migration
@@ -15,37 +14,22 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('movies', function (Blueprint $table) {
+        Schema::create('series', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-
             $table->foreignId('creator_id')->constrained('users');
-            $table->foreignId('quality_id')->constrained('qualities');
-            $table->foreignId('series_id')->constrained('series');
-            $table->foreignId('vod_id')->nullable()->constrained('vods');
-            $table->morphs('categorizable');
-
-            $table->decimal('price', 8, 2)->nullable();
+            $table->string('name');
             $table->string('url')->nullable();
             $table->string('short_description');
             $table->text('description')->nullable();
             $table->enum('visibility', VisibilityStatus::toArray())->default(VisibilityStatus::private());
-            $table->enum('pricing_type', PricingType::toArray())->default(PricingType::included_with_subscription());
             $table->boolean('favorite')->default(false);
             $table->boolean('to_watch')->default(false);
-
-            $table->time('watched')->default('00:00:00')->nullable();
-            $table->time('length')->default('00:00:00');
+            $table->integer('movie_position')->nullable();
+            $table->integer('seasons')->default(1);
             $table->timestamps();
             $table->softDeletes();
 
-            $table->index([
-                'name',
-                'url',
-                'price',
-                'quality_id',
-                'visibility'
-            ], 'idx_movies_main_fields');
+            $table->index(['name','url','visibility','favorite','movie_position']);
         });
     }
 
@@ -56,6 +40,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('movies');
+        Schema::dropIfExists('series');
     }
 };

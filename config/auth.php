@@ -1,5 +1,7 @@
 <?php
 
+use Modules\Core\Providers\StatusServiceProvider;
+
 return [
 
     /*
@@ -64,11 +66,6 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
-
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
     ],
 
     /*

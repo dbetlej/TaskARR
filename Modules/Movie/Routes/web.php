@@ -11,7 +11,6 @@
 |
 */
 
-use Illuminate\Support\Facades\Route;
 use Modules\Movie\Http\Controllers\Admin\MovieController as AdminMovieController;
 use Modules\Movie\Http\Controllers\MovieController;
 

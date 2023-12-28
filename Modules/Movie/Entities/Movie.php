@@ -2,33 +2,41 @@
 
 namespace Modules\Movie\Entities;
 
-//use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Modules\Core\Entities\Category;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
 
 class Movie extends Model
 {
-    use SoftDeletes, LogsActivity;
+    use SoftDeletes, LogsActivity, LogsActivity;
 
     /**
      * The attributes that are mass assignable.
      * @var array<int, string>
      */
     protected $fillable = [
-        'creator_id',
         'name',
+        'creator_id',
+        'quality_id',
+        'series_id',
+        'vod_id',
+        'price',
         'url',
+        'short_description',
         'description',
-        'series',
-        'vod',
-        'category',
+        'visibility',
+        'pricing_type',
         'favorite',
+        'to_watch',
         'watched',
-        'to_watch'
+        'length'
     ];
 
     /**
@@ -40,14 +48,83 @@ class Movie extends Model
         return $this->belongsTo(User::class, 'creator_id');
     }
 
+    /**
+     * @return BelongsTo
+     */
+    public function vod(): BelongsTo
+    {
+        return $this->belongsTo(Vod::class);
+    }
+
+    /**
+     * @return MorphToMany
+     */
+    public function categories(): MorphToMany
+    {
+        return $this->morphToMany(Category::class, 'categorizable');
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function series(): BelongsTo
+    {
+        return $this->belongsTo(Series::class);
+    }
+
+    /**
+     * @param $query
+     * @param $seriesId
+     * @return mixed
+     */
+    public function scopeSeriesMovies($query, $seriesId): mixed
+    {
+        return $query->whereHas('series', function($query) use ($seriesId) {
+            $query->where('id', $seriesId);
+        });
+    }
+
+    /**
+     * @return BelongsToMany
+     */
+    public function qualities(): BelongsToMany
+    {
+        return $this->belongsToMany(Quality::class);
+    }
+
+    /**
+     * @return MorphTo
+     */
+    public function tagable(): MorphTo
+    {
+        return $this->morphTo();
+    }
+
+    /**
+     * @param $query
+     * @return mixed
+     */
     public function scopeOwned($query)
     {
         return $query->where('creator_id', auth()->user());
     }
 
+    /**
+     * @param $query
+     * @return mixed
+     */
+    public function scopeBrought($query): mixed
+    {
+        return $query->whereHas('vod', function ($query) {
+            $query->where('brought', true);
+        });
+    }
+
+    /**
+     * @return LogOptions
+     */
     public function getActivityLogOptions(): LogOptions
     {
         return LogOptions::defaults()->logFillable();
     }
 }
-

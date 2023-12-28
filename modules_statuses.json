@@ -3,5 +3,6 @@
     "Movie": true,
     "Review": false,
     "Calendar": false,
-    "Permission": false
+    "Permission": false,
+    "Core": true
 }
