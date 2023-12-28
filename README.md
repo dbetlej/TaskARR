@@ -1,66 +1,78 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+  <div align="center">
+    <h1>TaskArr</h1>
+    <p>TaskArr is a versatile Laravel application designed to assist in task management, decision-making, and various other functionalities, catering to both work and leisure activities.</p>
+  </div>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+  <h2>About TaskArr</h2>
+  <p>TaskArr isn't just about managing tasks; it's an ecosystem aiding in optimizing time between work and relaxation. It offers features for tasks, movie and music recommendations, reviews, and a blog, fostering a balanced lifestyle.</p>
 
-## About Laravel
+  <h2>Modules</h2>
+  <ul>
+    <li>Core Module (categories)</li>
+    <li>Movie Module (movies, series, vods)</li>
+    <li>Permission Module - in process...</li>
+    <li>Review Module - in process...</li>
+    <li>Calendar Module - in process...</li>
+    <li>Calendar API - Google + Apple - in process...</li>
+    <li>User Module - in process...</li>
+    <li>Admin Module - in process...</li>
+    <!-- Add the remaining modules -->
+  </ul>
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+  <h2>Installation with Docker</h2>
+  <p>To install and run TaskArr using Docker on your local machine, follow these steps:</p>
+  <ol>
+    <li><strong>Clone the repository</strong>:</li>
+    <code>git clone https://github.com/yourusername/TaskArr.git</code>
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+    <li><strong>Navigate to the project directory</strong>:</li>
+    <code>cd TaskArr</code>
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+    <li><strong>Copy the example environment file and configure</strong>:</li>
+    <code>cp .env.example .env</code>
 
-## Learning Laravel
+    <p>Update the <code>.env</code> file with your database credentials and any other necessary configuration.</p>
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+    <li><strong>Build and start the Docker containers</strong>:</li>
+    <code>docker-compose up -d --build</code>
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+    <p>This command will build the necessary Docker containers specified in <code>docker-compose.yml</code> and start them in detached mode.</p>
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+    <li><strong>Generate application key</strong>:</li>
+    <code>docker-compose exec app php artisan key:generate</code>
 
-## Laravel Sponsors
+    <li><strong>Run migrations</strong>:</li>
+    <code>docker-compose exec app php artisan migrate</code>
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+    <li><strong>Run the application in Docker</strong>:</li>
+    <code>docker-compose exec app php artisan serve --host=0.0.0.0</code>
 
-### Premium Partners
+    <p>This command starts the Laravel server inside the Docker container, allowing access at <code>http://localhost:8000</code> on your local machine.</p>
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+    <li><strong>Run npm run dev</strong>:</li>
+    <code>docker-compose exec app npm run dev</code>
 
-## Contributing
+    <p>This command compiles the frontend assets using npm inside the Docker container.</p>
+  </ol>
+  
+  <h2>Usage</h2>
+  <ol>
+    <li>Organize tasks efficiently, search and rate movies, explore music suggestions, and engage with the blog.</li>
+    <li>Utilize the decision-making tools for work and relaxation to manage time effectively.</li>
+  </ol>
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+  <h2>Contributing</h2>
+  <p>I welcome contributions to enhance TaskArr! If you'd like to contribute:</p>
+  <ol>
+    <li><strong>Fork the repository</strong>: Fork the TaskArr repository on GitHub.</li>
+    <li><strong>Create branches for features</strong>: Create a branch for each feature or improvement you're working on.</li>
+    <li><strong>Make commits</strong>: Make commits with descriptive messages for each change.</li>
+    <li><strong>Submit pull requests for review</strong>: Once you've made changes, submit a pull request for review.</li>
+  </ol>
+  <p>I appreciate your contributions in making TaskArr even better!</p>
 
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+  <h2>License</h2>
+  <p>In progress...</p>
+  
+  <h2>Acknowledgments</h2>
+  <p>In progress...</p>
