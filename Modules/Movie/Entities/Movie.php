@@ -33,9 +33,6 @@ class Movie extends Model
         'description',
         'visibility',
         'pricing_type',
-        'favorite',
-        'to_watch',
-        'watched',
         'length'
     ];
 
@@ -73,23 +70,32 @@ class Movie extends Model
     }
 
     /**
-     * @param $query
-     * @param $seriesId
-     * @return mixed
-     */
-    public function scopeSeriesMovies($query, $seriesId): mixed
-    {
-        return $query->whereHas('series', function($query) use ($seriesId) {
-            $query->where('id', $seriesId);
-        });
-    }
-
-    /**
      * @return BelongsToMany
      */
     public function qualities(): BelongsToMany
     {
         return $this->belongsToMany(Quality::class);
+    }
+
+    /**
+     * @return BelongsToMany
+     */
+    public function users(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'user_movie')
+            ->withPivot('ignore','favorite','to_watch','watched','position')
+            ->withTimestamps();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function user(): mixed
+    {
+        return $this->users()
+            ->where('user_id', auth()->id())
+            ->withPivot('ignore','favorite','to_watch','watched','position')
+            ->first();
     }
 
     /**
@@ -117,6 +123,18 @@ class Movie extends Model
     {
         return $query->whereHas('vod', function ($query) {
             $query->where('brought', true);
+        });
+    }
+
+    /**
+     * @param $query
+     * @param $seriesId
+     * @return mixed
+     */
+    public function scopeSeriesMovies($query, $seriesId): mixed
+    {
+        return $query->whereHas('series', function($query) use ($seriesId) {
+            $query->where('id', $seriesId);
         });
     }
 

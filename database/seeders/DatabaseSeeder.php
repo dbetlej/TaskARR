@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Modules\Core\Database\Seeders\CategoriesDatabaseSeeder;
+use Modules\Movie\Database\Seeders\MovieDatabaseSeeder;
 use Modules\User\Database\Seeders\UserDatabaseSeeder;
 
 class DatabaseSeeder extends Seeder
@@ -15,7 +16,8 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             UserDatabaseSeeder::class,
-            CategoriesDatabaseSeeder::class
+            CategoriesDatabaseSeeder::class,
+            MovieDatabaseSeeder::class
         ]);
     }
 }
