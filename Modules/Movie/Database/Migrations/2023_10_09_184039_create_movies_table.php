@@ -31,10 +31,7 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->enum('visibility', VisibilityStatus::toArray())->default(VisibilityStatus::private());
             $table->enum('pricing_type', PricingType::toArray())->default(PricingType::included_with_subscription());
-            $table->boolean('favorite')->default(false);
-            $table->boolean('to_watch')->default(false);
 
-            $table->time('watched')->default('00:00:00')->nullable();
             $table->time('length')->default('00:00:00');
             $table->timestamps();
             $table->softDeletes();
@@ -45,7 +42,7 @@ return new class extends Migration
                 'price',
                 'quality_id',
                 'visibility'
-            ], 'idx_movies_main_fields');
+            ], 'idx_movies_fields');
         });
     }
 

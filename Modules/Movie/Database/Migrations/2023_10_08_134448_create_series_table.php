@@ -22,14 +22,11 @@ return new class extends Migration
             $table->string('short_description');
             $table->text('description')->nullable();
             $table->enum('visibility', VisibilityStatus::toArray())->default(VisibilityStatus::private());
-            $table->boolean('favorite')->default(false);
-            $table->boolean('to_watch')->default(false);
-            $table->integer('movie_position')->nullable();
             $table->integer('seasons')->default(1);
             $table->timestamps();
             $table->softDeletes();
 
-            $table->index(['name','url','visibility','favorite','movie_position']);
+            $table->index(['name','url','visibility']);
         });
     }
 

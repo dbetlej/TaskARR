@@ -18,7 +18,7 @@ class Quality extends Model
     protected $fillable = [
         'quality_audio',
         'quality_video',
-        'hdr',
+        'hdr'
     ];
 
     /**
