@@ -9,8 +9,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Modules\Core\Entities\Category;
+use Modules\Core\Entities\Price;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
 
@@ -29,7 +31,6 @@ class Vod extends Model
         'url',
         'short_description',
         'description',
-        'price',
         'bought'
     ];
 
@@ -56,6 +57,14 @@ class Vod extends Model
     public function categories(): MorphMany
     {
         return $this->morphMany(Category::class, 'categorizable');
+    }
+
+    /**
+     * @return MorphToMany
+     */
+    public function prices(): MorphToMany
+    {
+        return $this->morphToMany(Price::class, 'priceable')->withPivot(['title', 'price']);
     }
 
     /**

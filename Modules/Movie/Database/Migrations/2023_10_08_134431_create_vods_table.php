@@ -21,13 +21,12 @@ return new class extends Migration
             $table->string('url');
             $table->string('short_description');
             $table->text('description')->nullable();
-            $table->morphs('categorizable');
             $table->boolean('favorite')->default(false);
-            $table->decimal('price', 8, 2);
             $table->boolean('bought')->default(false);
             $table->timestamps();
+            $table->softDeletes();
 
-            $table->index(['name','price','favorite','bought']);
+            $table->index(['name','favorite','bought']);
         });
     }
 

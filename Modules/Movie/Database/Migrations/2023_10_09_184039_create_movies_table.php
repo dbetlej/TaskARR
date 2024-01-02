@@ -21,11 +21,9 @@ return new class extends Migration
 
             $table->foreignId('creator_id')->constrained('users');
             $table->foreignId('quality_id')->constrained('qualities');
-            $table->foreignId('series_id')->constrained('series');
+            $table->foreignId('series_id')->nullable()->constrained('series');
             $table->foreignId('vod_id')->nullable()->constrained('vods');
-            $table->morphs('categorizable');
 
-            $table->decimal('price', 8, 2)->nullable();
             $table->string('url')->nullable();
             $table->string('short_description');
             $table->text('description')->nullable();
@@ -39,10 +37,9 @@ return new class extends Migration
             $table->index([
                 'name',
                 'url',
-                'price',
                 'quality_id',
                 'visibility'
-            ], 'idx_movies_fields');
+            ]);
         });
     }
 
