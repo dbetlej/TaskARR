@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('categorizables', function (Blueprint $table) {
+        Schema::create('priceables', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('category_id')->constrained('categories');
-            $table->morphs('categorizable');
+            $table->foreignId('price_id')->constrained('prices');
+            $table->morphs('priceable');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categorizables');
+        Schema::dropIfExists('priceables');
     }
 };

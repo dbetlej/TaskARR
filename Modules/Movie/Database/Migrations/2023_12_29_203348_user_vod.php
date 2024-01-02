@@ -22,6 +22,7 @@ return new class extends Migration
             $table->boolean('wish_list')->default(false);
             $table->integer('position');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -32,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_movie');
+        Schema::dropIfExists('user_vod');
     }
 };

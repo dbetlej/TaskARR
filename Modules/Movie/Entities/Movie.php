@@ -10,12 +10,13 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Modules\Core\Entities\Category;
+use Modules\Core\Entities\Price;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
 
 class Movie extends Model
 {
-    use SoftDeletes, LogsActivity, LogsActivity;
+    use SoftDeletes, LogsActivity;
 
     /**
      * The attributes that are mass assignable.
@@ -27,7 +28,6 @@ class Movie extends Model
         'quality_id',
         'series_id',
         'vod_id',
-        'price',
         'url',
         'short_description',
         'description',
@@ -59,6 +59,14 @@ class Movie extends Model
     public function categories(): MorphToMany
     {
         return $this->morphToMany(Category::class, 'categorizable');
+    }
+
+    /**
+     * @return MorphToMany
+     */
+    public function prices(): MorphToMany
+    {
+        return $this->morphToMany(Price::class, 'priceable')->withPivot(['title', 'price']);
     }
 
     /**

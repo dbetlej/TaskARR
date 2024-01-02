@@ -23,6 +23,7 @@ return new class extends Migration
             $table->time('watched')->default('00:00:00')->nullable();
             $table->integer('position');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -33,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_movie');
+        Schema::dropIfExists('user_series');
     }
 };

@@ -23,6 +23,7 @@ return new class extends Migration
             $table->time('watched')->default('00:00:00')->nullable();
             $table->integer('position');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

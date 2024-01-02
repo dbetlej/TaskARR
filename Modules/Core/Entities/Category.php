@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Modules\Movie\Entities\Movie;
+use Modules\Movie\Entities\Vod;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
 
@@ -21,9 +22,7 @@ class Category extends Model
         'name',
         'short_description',
         'description',
-        'type',
-        'categorizable_id',
-        'categorizable_type'
+        'type'
     ];
 
     /**
@@ -41,6 +40,14 @@ class Category extends Model
     public function movies(): MorphToMany
     {
         return $this->morphedByMany(Movie::class, 'categorizable');
+    }
+
+    /**
+     * @return MorphToMany
+     */
+    public function vods(): MorphToMany
+    {
+        return $this->morphedByMany(Vod::class, 'categorizable');
     }
 
     /**
